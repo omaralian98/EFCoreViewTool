@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreViewTool.Cli", "EFCoreViewTool.Cli\EFCoreViewTool.Cli.csproj", "{D81491CF-3840-4015-AEBE-812758C8321A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreViewTool.Core", "EFCoreViewTool.Core\EFCoreViewTool.Core.csproj", "{662C720F-1890-442E-B765-DF28AEA48233}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D81491CF-3840-4015-AEBE-812758C8321A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D81491CF-3840-4015-AEBE-812758C8321A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D81491CF-3840-4015-AEBE-812758C8321A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D81491CF-3840-4015-AEBE-812758C8321A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{662C720F-1890-442E-B765-DF28AEA48233}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{662C720F-1890-442E-B765-DF28AEA48233}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{662C720F-1890-442E-B765-DF28AEA48233}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{662C720F-1890-442E-B765-DF28AEA48233}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
