@@ -5,5 +5,5 @@ namespace EFCoreViewTool.Core.Interfaces;
 
 public interface IViewDiscoveryService
 {
-    public IEnumerable<ViewConfiguratorInfo> Discover(List<Assembly> assemblies);
+    public List<ViewConfiguratorInfo> Discover(List<Assembly> assemblies);
 }

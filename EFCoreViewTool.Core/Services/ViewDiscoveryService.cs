@@ -7,7 +7,7 @@ namespace EFCoreViewTool.Core.Services;
 
 public class ViewDiscoveryService : IViewDiscoveryService
 {
-    public IEnumerable<ViewConfiguratorInfo> Discover(List<Assembly> assemblies)
+    public List<ViewConfiguratorInfo> Discover(List<Assembly> assemblies)
     {
         var configurators = new List<ViewConfiguratorInfo>();
         var configuratorInterfaceType = typeof(IViewConfigurator<,>);
