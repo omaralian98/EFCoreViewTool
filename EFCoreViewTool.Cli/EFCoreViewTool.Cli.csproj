@@ -7,4 +7,18 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Cocona" Version="2.2.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
+      <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Exceptions\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EFCoreViewTool.Core\EFCoreViewTool.Core.csproj" />
+    </ItemGroup>
+
 </Project>
