@@ -20,7 +20,7 @@ public class CommandExceptionsFilter : CommandFilterAttribute
                   ex is not CommandNotFoundException &&
                   ex is not CommandExitedException)
         {
-            Console.WriteLine($"An error has occurred: {ex}");
+            Console.WriteLine($"{ex.Message}");
         }
 
         return -1;

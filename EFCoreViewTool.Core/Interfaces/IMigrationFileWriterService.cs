@@ -5,6 +5,6 @@ namespace EFCoreViewTool.Core.Interfaces;
 
 public interface IMigrationFileWriterService
 {
-    public Task WriteMigrationsAsync(List<ViewConfiguratorInfo> views, ProjectContextInfo projectContextInfo,
+    public Task WriteMigrationsAsync(List<ViewConfiguratorInfo> views, ProjectInfo projectInfo,
         string destinationDirectory, string className, string namespaceName);
 }

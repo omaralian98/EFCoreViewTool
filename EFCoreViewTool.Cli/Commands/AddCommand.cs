@@ -18,13 +18,13 @@ public class AddCommand(
     public async Task Add(AddCommandParameters parameters)
     {
         var request = new AddMigrationRequest
-        {
-            MigrationName = parameters.Name,
-            Project = parameters.Project,
-            StartupProject = parameters.StartupProject,
-            Context = parameters.Context,
-            Namespace = parameters.Namespace
-        };
+        (
+            MigrationName: parameters.Name,
+            Project: parameters.Project,
+            StartupProject: parameters.StartupProject,
+            Context: parameters.Context,
+            Namespace: parameters.Namespace
+        );
         await addMigrationUseCase.ExecuteAsync(request);
     }
 }

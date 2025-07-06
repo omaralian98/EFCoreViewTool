@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Xml.Linq;
 using EFCoreViewTool.Core.Interfaces;
+using EFCoreViewTool.Core.Utilities;
 
 namespace EFCoreViewTool.Core.Services;
 
@@ -8,15 +9,15 @@ public class ProjectBuildService : IProjectBuildService
 {
     public string BuildAndGetDllPath(string projectPath)
     {
-        if (!Directory.Exists(projectPath))
+        if (Directory.Exists(projectPath) == false)
         {
             throw new DirectoryNotFoundException($"Project folder not found: {projectPath}");
         }
 
-        var csprojFile = Directory.GetFiles(projectPath, "*.csproj", SearchOption.TopDirectoryOnly).FirstOrDefault();
+        var csprojFile = projectPath.GetProjectOrDefault();
         if (csprojFile is null)
         {
-            throw new FileNotFoundException("No .csproj file found in the specified folder.");
+            throw new FileNotFoundException("No project was found. Change the current working directory or use the --project option.\n");
         }
         
         string targetFramework = GetTargetFramework(csprojFile);
@@ -40,9 +41,8 @@ public class ProjectBuildService : IProjectBuildService
 
         if (buildProcess.ExitCode != 0)
         {
-            string output = buildProcess.StandardOutput.ReadToEnd();
             string errors = buildProcess.StandardError.ReadToEnd();
-            throw new Exception($"Build failed:\n{errors}\n{output}");
+            throw new Exception($"Build failed:\n{errors}");
         }
 
         var fileName = Path.GetFileNameWithoutExtension(csprojFile);

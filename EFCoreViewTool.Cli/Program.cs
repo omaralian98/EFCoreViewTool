@@ -7,9 +7,8 @@ using EFCoreViewTool.Core.UseCases.AddMigration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-var debugArgs = new[] { "add", "testt", "-p", "/home/mr-sure21/RiderProjects/Tele-Shop/Infrastructure", "-s", "/home/mr-sure21/RiderProjects/Tele-Shop/API" };
 
-var builder = CoconaApp.CreateBuilder(debugArgs);
+var builder = CoconaApp.CreateBuilder(args);
 
 // Add logging with filtering to only show your own logs
 builder.Services.AddLogging();

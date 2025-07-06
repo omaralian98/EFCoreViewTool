@@ -15,11 +15,10 @@ public class MigrationFileWriterService(
 {
     private readonly Dictionary<Type, (DbContext, IMigrationScriptGenerator)> _cached = [];
 
-    public async Task WriteMigrationsAsync(List<ViewConfiguratorInfo> views, ProjectContextInfo projectContextInfo,
+    public async Task WriteMigrationsAsync(List<ViewConfiguratorInfo> views, ProjectInfo projectInfo,
         string destinationDirectory, string className, string namespaceName)
     {
         Directory.CreateDirectory(destinationDirectory);
-
 
         var upSqlStatements = new List<string>();
         var downSqlStatements = new List<string>();
@@ -29,7 +28,7 @@ public class MigrationFileWriterService(
             (DbContext? db, IMigrationScriptGenerator? gen) existing = _cached.GetValueOrDefault(view.DbContextType);
             
             var context = existing.db ??
-                            dbContextFactoryService.CreateDbContext(view.DbContextType, projectContextInfo);
+                            dbContextFactoryService.CreateDbContext(view.DbContextType, projectInfo);
             var generator = existing.gen ?? generatorFactory.Get(context);
             _cached[view.DbContextType] = (context, generator);
             
@@ -80,7 +79,7 @@ public class MigrationFileWriterService(
         foreach (var sql in upSqlStatements)
         {
             var escapedSql = sql.Replace("\"", "\"\"");
-            sb.AppendLine($"            migrationBuilder.Sql(@\"\n{escapedSql}\");");
+            sb.AppendLine($"            migrationBuilder.Sql(@\"\n{escapedSql}\"\n);\n");
         }
 
         sb.AppendLine("        }");

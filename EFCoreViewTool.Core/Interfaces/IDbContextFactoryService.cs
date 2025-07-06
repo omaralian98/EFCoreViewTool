@@ -5,5 +5,5 @@ namespace EFCoreViewTool.Core.Interfaces;
 
 public interface IDbContextFactoryService
 {
-    public DbContext CreateDbContext(Type dbContextType, ProjectContextInfo context, string? dbContextName = null);
+    public DbContext CreateDbContext(Type dbContextType, ProjectInfo context, string? dbContextName = null);
 }

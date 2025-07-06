@@ -7,17 +7,17 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Design.Internal;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace EFCoreViewTool.Core.Services
 {
-    public class DbContextFactoryService : IDbContextFactoryService
+    public class DbContextFactoryService(ILogger<DbContextFactoryService> logger) : IDbContextFactoryService
     {
-        public DbContext CreateDbContext(Type dbContextType, ProjectContextInfo context, string? dbContextName = null)
+        public DbContext CreateDbContext(Type dbContextType, ProjectInfo context, string? dbContextName = null)
         {
-            var dbContext = TryCreateWithServiceProvider2(dbContextType, context.StartupAssembly, context.StartupDllPath);
+            var dbContext = TryCreateWithServiceProvider2(dbContextType, Assembly.LoadFrom(context.StartupAssembly), context.StartupAssembly);
             if (dbContext != null)
             {
-                Console.WriteLine("Here MOther fuckler");
                 return dbContext;
             }
             // 1. Try IDesignTimeDbContextFactory in project assembly
