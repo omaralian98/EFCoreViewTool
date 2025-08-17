@@ -1,5 +1,7 @@
 using System.Reflection;
+using EFCoreViewTool.Core.Attributes;
 using EFCoreViewTool.Core.Contracts;
+using EFCoreViewTool.Core.Enums;
 using EFCoreViewTool.Core.Interfaces;
 using EFCoreViewTool.Core.Models;
 
@@ -31,6 +33,9 @@ public class ViewDiscoveryService : IViewDiscoveryService
                         
                         var dbContextType = iface.GetGenericArguments()[0];
                         var entityType = iface.GetGenericArguments()[1];
+
+                        var viewTypeAttribute = configType.GetCustomAttribute<ViewTypeAttribute>();
+                        var viewType = viewTypeAttribute?.Type ?? ViewType.Standard; 
                         
                         configurators.Add(new ViewConfiguratorInfo
                         {
@@ -38,6 +43,7 @@ public class ViewDiscoveryService : IViewDiscoveryService
                             DbContextType = dbContextType,
                             EntityType = entityType,
                             ViewName = entityType.Name,
+                            ViewType = viewType
                         });
                         
                     }
